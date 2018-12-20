@@ -176,8 +176,14 @@ gaps outer 15
 
 default_border pixel 10
 
+# Wallpapers
 exec --no-startup-id compton --config ~/.config/i3/compton.conf
 # exec hsetroot -fill ~/Downloads/mountains-wallpapers-27980-9032053.jpg
 exec feh --randomize --recursive --bg-fill ~/Documents/wallpapers
-
 bindsym $mod+shift+b exec feh --randomize --recursive --bg-fill ~/Documents/wallpapers
+
+# Sound
+exec start-pulseaudio-x11
+bindsym XF86AudioMute exec pactl list sinks | grep -q Mute:.no && pactl set-sink-mute 0 1 || pactl set-sink-mute 0 0
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +10%
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -10%
